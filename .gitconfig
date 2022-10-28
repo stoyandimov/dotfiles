@@ -1,0 +1,11 @@
+[user]
+	email = stoyandimov@hotmail.com
+	name = Stoyan Dimov
+[receive]
+	denyCurrentBranch = updateInstead
+[core]
+	editor = vim
+[alias]
+	graph = log --graph --oneline
+[init]
+	defaultBranch = main

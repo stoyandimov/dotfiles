@@ -1,0 +1,9 @@
+*
+!.gitignore
+!.gitconfig
+!.tmux.conf
+!.zshrc
+!.vimrc
+!.selected_editor
+!.config/Code/User/settings.json
+
