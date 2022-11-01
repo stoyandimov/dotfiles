@@ -44,4 +44,5 @@
 	"workbench.preferredDarkColorTheme": "Solarized Dark",
 	"window.commandCenter": true,
 	"window.titleBarStyle": "custom",
+	"keyboard.dispatch": "keyCode",
 }
