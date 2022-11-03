@@ -100,15 +100,26 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # my
+bindkey -v
+
 alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
-
 alias mlnet="/home/$(whoami)/.dotnet/tools/mlnet"
 
-bindkey -v
-bindkey '^r' history-incremental-search-backward
+# FZF History search
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
+export ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--height=8 --info=hidden --layout=reverse'
+export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE=true
+export ZSH_FZF_HISTORY_SEARCH_EVENT_NUMBERS=0
+export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
+export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
+
+# FZF Search
+export FZF_DEFAULT_OPTS=--inline-info
+
+# Misc
 export PATH=/home/$(whoami)/.local/bin:$PATH:/home/$(whoami)/.dotnet/tools
 export DOTNET_USE_POLLING_FILE_WATCHER=true
-
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
+
