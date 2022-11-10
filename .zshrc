@@ -106,6 +106,7 @@ alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias mlnet="/home/$(whoami)/.dotnet/tools/mlnet"
+alias syrinxctl="cd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice && dotnet run -- "
 
 # FZF History search
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
