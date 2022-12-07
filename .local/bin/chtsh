@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+execs=`compgen -c`
+langs=`echo "csharp php python bash" | tr ' ' '\n'`
+selected=`echo $execs $langs | tr ' ' '\n' | fzf`
+
+# Are we searching 'man' manual
+if [ $selected == "man" ]; then
+	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:"`
+	tmux neww bash -c "man $query"
+	exit;
+fi
+
+# Or, search on cht.sh
+read -p "Search ($selected): " query
+
+url=""
+if echo $langs | grep -qs "$selected"; then
+	query=`echo $query | tr ' ' '+'`
+	url="cht.sh/$selected/$query"
+else
+	url="cht.sh/$selected~$query"
+fi
+
+tmux neww bash -c "curl -q $url 2> /dev/null | less -SR"
+
