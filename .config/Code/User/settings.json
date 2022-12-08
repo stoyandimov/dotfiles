@@ -45,4 +45,5 @@
 	"window.commandCenter": true,
 	"window.titleBarStyle": "custom",
 	"keyboard.dispatch": "keyCode",
+	"editor.stickyScroll.enabled": true,
 }
