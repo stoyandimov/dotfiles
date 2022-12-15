@@ -112,21 +112,25 @@ alias beepup="cvlc --play-and-exit -q /usr/share/sounds/freedesktop/stereo/servi
 alias notify="notify-phone && notify-send -i gnome-terminal 'Finished Terminal Job' && beep"
 alias notify-when-done="fg; notify"
 
+# FZF Defaults
+export FZF_DEFAULT_OPTS='--inline-info --select-1 --exit-0'
+
 # FZF History search
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
-export ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--height=8 --info=hidden --layout=reverse'
+export ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--height=8 --info=hidden --layout=reverse --bind enter:replace-query+print-query'
 export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE=true
 export ZSH_FZF_HISTORY_SEARCH_EVENT_NUMBERS=0
 export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
 export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 
-# FZF Search
-export FZF_DEFAULT_OPTS=--inline-info
+# FZF ZSH Autocomplete
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
+export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
 
 # Misc
+export EDITOR=vim
 export PATH=/home/$(whoami)/.local/bin:$PATH:/home/$(whoami)/.dotnet/tools
 export DOTNET_USE_POLLING_FILE_WATCHER=true
-source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 # FUNCTIONS
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 execs=`compgen -c`
 langs=`echo "csharp php python bash" | tr ' ' '\n'`
-selected=`echo $execs $langs | tr ' ' '\n' | fzf`
+selected=`echo $execs $langs | tr ' ' '\n' | fzf --exact --bind enter:replace-query+print-query`
 
 # Are we searching 'man' manual
 if [ $selected == "man" ]; then
