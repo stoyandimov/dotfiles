@@ -1,49 +1,50 @@
 {
-	"files.exclude": {
-		"bin/": true,
-		"obj/": true,
-		".vscode/": true
-	},
-	"git.enabled": false,
-	"git.countBadge": "off",
-	"editor.renderWhitespace": "all",
+	"breadcrumbs.enabled": true,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.detectIndentation": false,
+	"editor.inlineSuggest.enabled": true,
 	"editor.insertSpaces": false,
-	"workbench.activityBar.visible": false,
+	"editor.lineNumbers": "relative",
 	"editor.minimap.enabled": false,
+	"editor.renderWhitespace": "all",
+	"editor.stickyScroll.enabled": true,
+	"editor.tabSize": 2,
+	"explorer.autoReveal": false,
 	"files.associations": {
 		"*.json": "jsonc"
 	},
+	"files.exclude": {
+		"**/bin/": true,
+		"**/obj/": true,
+		"**/.vscode/": true
+	},
+	"git.enabled": false,
+	"keyboard.dispatch": "keyCode",
+	"omnisharp.enableRoslynAnalyzers": true,
+	"php.validate.executablePath": "/usr/bin/php",
+	"python.defaultInterpreterPath": "/bin/python3",
+	"redhat.telemetry.enabled": false,
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/bower_components": true,
-		"**/bin": true
+		"**/bin": true,
+		"**/obj": true
 	},
-	"breadcrumbs.enabled": true,
-	"editor.tabSize": 2,
+	"vim.hlsearch": true,
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{ "before": ["u"    ], "after": [], "commands": [ { "command": "undo" } ] },
+		{ "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] }
+	],
+	"window.commandCenter": true,
 	"window.menuBarVisibility": "toggle",
-	"workbench.startupEditor": "none",
-	"editor.lineNumbers": "relative",
+	"window.titleBarStyle": "custom",
+	"workbench.activityBar.visible": false,
+	"workbench.colorTheme": "Solarized Dark",
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"workbench.preferredDarkColorTheme": "Solarized Dark",
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.tree.renderIndentGuides": "always",
 	"zenMode.hideLineNumbers": false,
 	"zenMode.hideTabs": false,
-	"zenMode.restore": true,
-	"workbench.tree.renderIndentGuides": "always",
-	"explorer.autoReveal": false,
-	"workbench.editor.enablePreviewFromQuickOpen": false,
-	"[python]": {},
-	"omnisharp.enableRoslynAnalyzers": true,
-	"workbench.colorTheme": "Solarized Dark",
-	"php.validate.executablePath": "/usr/bin/php",
-	"editor.detectIndentation": false,
-	"workbench.editorAssociations": {
-		"*.ipynb": "jupyter.notebook.ipynb"
-	},
-	"python.defaultInterpreterPath": "/bin/python3",
-	"redhat.telemetry.enabled": false,
-	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-	"editor.inlineSuggest.enabled": true,
-	"workbench.preferredDarkColorTheme": "Solarized Dark",
-	"window.commandCenter": true,
-	"window.titleBarStyle": "custom",
-	"keyboard.dispatch": "keyCode",
-	"editor.stickyScroll.enabled": true,
+	"zenMode.restore": true
 }
