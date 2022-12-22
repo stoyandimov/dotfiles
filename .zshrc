@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -96,12 +96,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# my
+# my keys
 bindkey -v
+bindkey -s '^f' '$(fzf-tmux -p)^M'
 
+alias zshconfig="vim ~/.zshrc"
 alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
@@ -113,7 +114,10 @@ alias notify="notify-phone && notify-send -i gnome-terminal 'Finished Terminal J
 alias notify-when-done="fg; notify"
 
 # FZF Defaults
-export FZF_DEFAULT_OPTS='--inline-info --select-1 --exit-0'
+export FZF_DEFAULT_OPTS="--inline-info --select-1 --exit-0 \
+	--bind='ctrl-e:execute(vim {})' \
+	--bind='ctrl-t:change-preview(tree \$(dirname \$(pwd)/{}))' \
+	--bind='ctrl-v:change-preview(bat --style=numbers --color=always --line-range :500 {})'"
 
 # FZF History search
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
@@ -126,6 +130,20 @@ export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 # FZF ZSH Autocomplete
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
 export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
+
+
+# Bat
+export BAT_THEME="Solarized (dark)"
+export BAT_STYLE="numbers"
+if command -v bat >/dev/null 2>&1; then
+	alias rcat=$(which cat)
+	alias cat=$(which bat)
+	export MANPAGER="sh -c 'col -bx | bat -l man'"
+fi
+
+# FZF GIT
+[ -d ~/.config/fzf-git.sh ] || git clone https://github.com/junegunn/fzf-git.sh ~/.config/fzf-git.sh
+source ~/.config/fzf-git.sh/fzf-git.sh
 
 # Misc
 export EDITOR=vim
