@@ -21,4 +21,4 @@ else
 	url="cht.sh/$selected~$query"
 fi
 
-tmux neww bash -c "curl -q $url 2> /dev/null | bat -pl md"
+tmux neww bash -c "curl -q $url 2> /dev/null | bat -pl md --paging always"
