@@ -4,7 +4,7 @@ export ZSH="/home/$(whoami)/.oh-my-zsh"
 ZSH_THEME="agnoster"
 DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git dotnet)
+plugins=(you-should-use git dotnet)
 
 source $ZSH/oh-my-zsh.sh
 
