@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey -v
 bindkey -s '^f' '$(fzf-tmux -p)^M'
 
+alias x=exit
 alias zshconfig="vim ~/.zshrc"
 alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
