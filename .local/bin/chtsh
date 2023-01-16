@@ -6,7 +6,7 @@ selected=`echo $execs $langs | tr ' ' '\n' | fzf --exact --bind enter:replace-qu
 # Are we searching 'man' manual
 if [ $selected == "man" ]; then
 	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:"`
-	tmux neww bash -c "man $query"
+	tmux neww bash -c "man $query | batcat -l man --paging always"
 	exit;
 fi
 
@@ -21,4 +21,4 @@ else
 	url="cht.sh/$selected~$query"
 fi
 
-tmux neww bash -c "curl -q $url 2> /dev/null | bat -pl md --paging always"
+tmux neww bash -c "curl -q $url 2> /dev/null | batcat -pl md --paging always"

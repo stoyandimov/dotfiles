@@ -30,7 +30,7 @@ if command -v batcat > /dev/null 2>&1; then
 	alias rcat=$(which cat)
 	alias cat=$(which batcat)
 	alias bat=$(which batcat)
-	export MANPAGER="sh -c 'col -bx | batcat -l man'"
+	export MANPAGER="sh -c 'col -bx | batcat -l man --paging always'"
 fi
 
 # FZF Defaults
