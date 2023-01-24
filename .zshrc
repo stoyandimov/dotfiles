@@ -35,10 +35,15 @@ if command -v batcat > /dev/null 2>&1; then
 fi
 
 # FZF Defaults
-export FZF_DEFAULT_OPTS="--inline-info --select-1 --exit-0 \
-	--bind='ctrl-e:execute(vim {})' \
-	--bind='ctrl-t:change-preview(tree \$(dirname \$(pwd)/{}))' \
+FZF_DEFAULTS="--inline-info --select-1 --exit-0 \
+	--bind='ctrl-e:execute(vim {})'"
+
+if [[ "$(fzf --version)" == "0.29 (devel)" ]] then
+	FZF_DEFAULTS="${FZF_DEFAULTS} --bind='ctrl-t:change-preview(tree \$(dirname \$(pwd)/{}))' \
 	--bind='ctrl-v:change-preview(batcat --style=numbers --color=always --line-range :500 {})'"
+fi;
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULTS
 
 # FZF History search
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
