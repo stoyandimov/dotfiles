@@ -1,5 +1,8 @@
 {
 	"breadcrumbs.enabled": true,
+	"chatgpt.method": "Browser Auto-login",
+	"chatgpt.chromiumPath": "/opt/microsoft/msedge/microsoft-edge",
+	"chatgpt.gpt3.model": "text-davinci-002-render",
 	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 	"editor.detectIndentation": false,
 	"editor.inlineSuggest.enabled": true,
@@ -23,7 +26,6 @@
 	"omnisharp.enableRoslynAnalyzers": true,
 	"php.validate.executablePath": "/usr/bin/php",
 	"python.defaultInterpreterPath": "/bin/python3",
-	"redhat.telemetry.enabled": false,
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/bower_components": true,
@@ -36,7 +38,6 @@
 		{ "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] }
 	],
 	"window.commandCenter": true,
-	"window.menuBarVisibility": "toggle",
 	"window.titleBarStyle": "custom",
 	"workbench.activityBar.visible": false,
 	"workbench.colorTheme": "Solarized Dark",
