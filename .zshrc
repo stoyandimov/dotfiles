@@ -18,7 +18,6 @@ alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias mlnet="/home/$(whoami)/.dotnet/tools/mlnet"
-alias syrinxctl="cd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice && dotnet run -- "
 alias beep="cvlc --play-and-exit -q /usr/share/sounds/freedesktop/stereo/service-logout.oga 2> /dev/null"
 alias beepup="cvlc --play-and-exit -q /usr/share/sounds/freedesktop/stereo/service-login.oga 2> /dev/null"
 alias notify="notify-phone && notify-send -i gnome-terminal 'Finished Terminal Job' && beep"
@@ -114,3 +113,15 @@ notify-phone() {
 	return 0;
 }
 
+
+syrinxctl() {
+	pushd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice > /dev/null
+	dotnet run -- $@
+	popd > /dev/null
+}
+
+arbcli() {
+	pushd /srv/repos/sdimov/R2D2ARB/src/R2D2ARB.ArbCli > /dev/null
+	dotnet run -- $@
+	popd > /dev/null
+}

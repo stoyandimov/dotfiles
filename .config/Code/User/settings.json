@@ -47,5 +47,6 @@
 	"workbench.tree.renderIndentGuides": "always",
 	"zenMode.hideLineNumbers": false,
 	"zenMode.hideTabs": false,
+	"dotnet.server.useOmnisharp": true,
 	"zenMode.restore": true
 }
