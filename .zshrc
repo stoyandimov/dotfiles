@@ -113,6 +113,9 @@ notify-phone() {
 	return 0;
 }
 
+headtail() {
+	head $@ && tail $@
+}
 
 syrinxctl() {
 	pushd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice > /dev/null
