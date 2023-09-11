@@ -7,6 +7,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(you-should-use git dotnet)
 
 source $ZSH/oh-my-zsh.sh
+export SYSTEMD_EDITOR=vim
 
 # Bind keys and aliases
 bindkey -v
