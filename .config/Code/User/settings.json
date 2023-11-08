@@ -39,14 +39,12 @@
 	],
 	"window.commandCenter": true,
 	"window.titleBarStyle": "custom",
-	"workbench.activityBar.visible": false,
 	"workbench.colorTheme": "Solarized Dark",
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"workbench.preferredDarkColorTheme": "Solarized Dark",
 	"workbench.startupEditor": "newUntitledFile",
 	"workbench.tree.renderIndentGuides": "always",
 	"zenMode.hideLineNumbers": false,
-	"zenMode.hideTabs": false,
 	"vim.handleKeys": {
 		"<C-d>": true,
 		"<C-p>": false,
@@ -60,5 +58,6 @@
 		"scminput": false,
 		"csharp": true
 	},
-	"zenMode.restore": true
+	"zenMode.restore": true,
+	"workbench.activityBar.location": "hidden"
 }
