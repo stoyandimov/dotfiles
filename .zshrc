@@ -57,10 +57,6 @@ export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
 export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
 
-# FZF GIT
-[ -d ~/.config/fzf-git.sh ] || git clone https://github.com/junegunn/fzf-git.sh ~/.config/fzf-git.sh
-source ~/.config/fzf-git.sh/fzf-git.sh
-
 # Misc
 export EDITOR=vim
 export PATH=/home/$(whoami)/.local/bin:$PATH:/home/$(whoami)/.dotnet/tools
