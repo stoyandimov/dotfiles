@@ -59,5 +59,6 @@
 		"csharp": true
 	},
 	"zenMode.restore": true,
-	"workbench.activityBar.location": "hidden"
+	"workbench.activityBar.location": "hidden",
+	"github.copilot.editor.enableAutoCompletions": true
 }
