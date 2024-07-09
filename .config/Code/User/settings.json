@@ -56,7 +56,8 @@
 		"plaintext": false,
 		"markdown": false,
 		"scminput": false,
-		"csharp": true
+		"csharp": true,
+		"aspnetcorerazor": true
 	},
 	"zenMode.restore": true,
 	"workbench.activityBar.location": "hidden",
