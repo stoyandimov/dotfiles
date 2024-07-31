@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Chech if 1Password is isntalled
+if which op &> /dev/null ; then
+
+	# Signin
+	eval $(op signin) && \
+		op item list | fzf | cut -d' ' -f 1 | \
+		xargs op item get --fields label=password --format json | jq -j '.value' | \
+		xclip -i -sel c && sleep 1 # sleep will allow value to be set in clipboard before exiting
+
+else
+	echo '1Password CLI (op) is not installed! https://support.1password.com/install-linux/#debian-or-ubuntu' && read
+fi

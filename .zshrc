@@ -58,6 +58,9 @@ export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
 export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
 
+# 1Password (op)
+eval "$(op completion zsh)"; compdef _op op
+
 # Misc
 export EDITOR=vim
 export PATH=/home/$(whoami)/.local/bin:$PATH:/home/$(whoami)/.dotnet/tools
