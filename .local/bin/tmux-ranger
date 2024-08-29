@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# $1 Session
+# $2 Window
+# $3 Pane
+# $4 Pane Path
+# $5 Command
+
+tmp_selected=$HOME/.rangerpath
+
+TERM=tmux-256color; ranger "$4" --choose$5=$tmp_selected;
+
+selected=$(cat $tmp_selected)
+rm $tmp_selected
+
+# Send the file as keys to #Session:#Window.#Pane
+case $5 in
+	dir)
+		if [ ! -d "$selected" ]; then
+			selected=$(dirname "$selected")
+		fi
+		selected=$(echo $selected | sed 's/ /\\ Space /g')
+		selected="cd Space $selected Enter"
+		tmux send-keys -t "$1:$2.$3" $selected
+	;;
+	file)
+		selected=$(echo $selected | sed 's/ /\\ Space /g')
+		tmux send-keys -t "$1:$2.$3" $selected
+	;;
+esac

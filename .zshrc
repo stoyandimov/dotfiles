@@ -11,7 +11,6 @@ export SYSTEMD_EDITOR=vim
 
 # Bind keys and aliases
 bindkey -v
-bindkey -s '^f' '$(fzf-tmux -p)^M'
 
 alias ssh='TERM=xterm ssh'
 alias x=exit

@@ -5,6 +5,7 @@ if which op &> /dev/null ; then
 
 	# Signin
 	eval $(op signin) && \
+		echo "Signing in and loading item list..." && \
 		op item list | fzf | cut -d' ' -f 1 | \
 		xargs op item get --fields label=password --format json | jq -j '.value' | \
 		xclip -i -sel c && sleep 1 # sleep will allow value to be set in clipboard before exiting

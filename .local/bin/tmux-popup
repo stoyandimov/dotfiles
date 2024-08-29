@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# $1 Session
+# $2 Window
+# $3 Pane
+# $4 Pane Path
+# $5 Command
+
+echo "i - cht.sh"
+echo "d - cd-ranger"
+echo "f - file-selector"
+echo "h - cmd --help"
+echo "p - 1password"
+echo "r - ranger"
+
+printf "\n"
+echo "or exit and use one for the key bindings"
+printf "\n"
+
+echo "C-f - inline file selector (ranger)"
+echo "C-g - google search"
+
+printf "\n"
+
+read -p "Select option: " -n1 KEY
+
+case $KEY in
+	i) tmux neww -n cht.sh ~/.local/bin/tmux-help;;
+	d) tmux neww -n dir-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' dir";;
+	f) tmux neww -n file-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' file";;
+	h) tmux neww -n cmd\ --help "~/.local/bin/tmux-help -h";;
+	p) tmux neww -n 1password ~/.local/bin/tmux-opcopy;;
+	r) tmux neww -n ranger -c '#{pane_current_path}' "TERM=tmux-256color ranger";;
+esac

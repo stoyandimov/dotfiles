@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 execs=`compgen -c`
-langs=`echo "csharp php python bash" | tr ' ' '\n'`
+langs=`echo "blazor csharp php python bash" | tr ' ' '\n'`
 selected=`echo $execs $langs | tr ' ' '\n' | fzf --exact --bind enter:replace-query+print-query`
+
+# Exit on no inpit
+if [ -z "$selected" ]; then
+	exit
+fi
+
+# Are we searching '--help'
+if [ "$1" == "-h" ]; then
+	tmux neww -n "$selected --help" bash -c "$selected --help | batcat -l bash --paging always"
+	exit;
+fi
 
 # Are we searching 'man' manual
 if [ $selected == "man" ]; then
 	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:"`
-	tmux neww bash -c "man $query | batcat -l man --paging always"
+	tmux neww -n "man $query" bash -c "man $query | batcat -l man --paging always"
 	exit;
 fi
 
