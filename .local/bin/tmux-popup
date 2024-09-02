@@ -21,6 +21,17 @@ echo "C-f - inline file selector (ranger)"
 echo "C-g - google search"
 
 printf "\n"
+echo "More useful:           fun:"
+echo "     xclip             cmatix"
+echo "     iftop             lolcat"
+echo "     ncdu              vimgolf"
+echo "     sshfs"
+echo "     speedometer"
+echo "     node_exporter"
+
+
+
+printf "\n"
 
 read -p "Select option: " -n1 KEY
 
