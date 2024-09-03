@@ -6,30 +6,40 @@
 # $4 Pane Path
 # $5 Command
 
-echo "i - cht.sh"
-echo "d - cd-ranger"
-echo "f - file-selector"
-echo "h - cmd --help"
-echo "p - 1password"
-echo "r - ranger"
+column -t -s ',' \
+<<EOL
+key,description
+---,-----------
+i,cht.sh"
+d,cd-ranger"
+f,file-selector"
+h,cmd --help"
+l,lynx links"
+p,1password"
+r,ranger"
+C-f,inline file selector (ranger)
+C-g,google search
+---,-----------------------------
+
+EOL
 
 printf "\n"
-echo "or exit and use one for the key bindings"
-printf "\n"
 
-echo "C-f - inline file selector (ranger)"
-echo "C-g - google search"
+column -t -s',' \
+<<EOL
 
-printf "\n"
-echo "More useful:           fun:"
-echo "     xclip             cmatix"
-echo "     iftop             lolcat"
-echo "     ncdu              vimgolf"
-echo "     sshfs"
-echo "     speedometer"
-echo "     node_exporter"
+More useful stuff:,More fun stuff:
+------------------,---------------
+xclip,cmatix
+iftop,lolcat
+ncdu,vimgolf
+sshfs
+speedometer
+node_exporter
+------------------,---------------
 
 
+EOL
 
 printf "\n"
 
@@ -40,6 +50,7 @@ case $KEY in
 	d) tmux neww -n dir-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' dir";;
 	f) tmux neww -n file-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' file";;
 	h) tmux neww -n cmd\ --help "~/.local/bin/tmux-help -h";;
+	l) tmux neww -n lynx\ links "~/.local/bin/tmux-lynx-links";;
 	p) tmux neww -n 1password ~/.local/bin/tmux-opcopy;;
 	r) tmux neww -n ranger -c '#{pane_current_path}' "TERM=tmux-256color ranger";;
 esac

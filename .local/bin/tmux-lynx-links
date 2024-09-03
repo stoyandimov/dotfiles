@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+links=$(column -t -s $',' \
+<<'EOF'
+
+awk, https://www.shortcutfoo.com/app/dojos/awk/cheatsheet
+Reg Ex , https://www.rexegg.com/regex-quickstart.php#chars
+VIM :s , https://vim.fandom.com/wiki/Search_and_replace
+
+EOF
+)
+
+selected=`echo "$links" | fzf | awk '{print $NF}'`
+lynx -accept_all_cookies $selected
+
+
