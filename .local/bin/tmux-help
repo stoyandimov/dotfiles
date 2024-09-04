@@ -32,4 +32,4 @@ else
 	url="cht.sh/$selected~$query"
 fi
 
-tmux neww bash -c "curl -q $url 2> /dev/null | batcat -pl md --paging always"
+tmux neww -n $url bash -c "curl -q $url 2> /dev/null | batcat -pl md --paging always"

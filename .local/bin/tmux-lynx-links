@@ -6,6 +6,7 @@ links=$(column -t -s $',' \
 awk, https://www.shortcutfoo.com/app/dojos/awk/cheatsheet
 Reg Ex , https://www.rexegg.com/regex-quickstart.php#chars
 VIM :s , https://vim.fandom.com/wiki/Search_and_replace
+VIM FAQ , https://vimhelp.org/vim_faq.txt.html#
 
 EOF
 )
