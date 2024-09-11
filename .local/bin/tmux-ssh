@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+TARGETS_FN=/tmp/$USER-tmux-ssh.txt
+
+if [ ! -f $TARGETS_FN ]; then
+	HOSTS=`grep -E '^[1-9]' /etc/hosts | sed "s/$/,/g"`
+
+	# Add common VPN prefixes
+	V1="10.0.1"
+	V2="10.0.10"
+	V3="10.8.0"
+	for I in {1..255}
+	do
+		HOSTS="$HOSTS,$V1.$I"
+		HOSTS="$HOSTS,$V2.$I"
+		HOSTS="$HOSTS,$V3.$I"
+	done
+
+	# Remove extra space (, )
+	HOSTS=`echo $HOSTS | sed "s/, /,/g"`
+
+	# First set of targets will auto use $USER
+	TARGETS=$HOSTS
+	for U in {"pi","sdimov"}
+	do
+		TARGETS="$TARGETS`echo $HOSTS | sed "s/,/,$U\@/g"`,"
+	done
+
+	echo $TARGETS | sed "s/,/\n/g" | sed "s/^\s//g" | sort > $TARGETS_FN
+fi
+
+selected=`cat $TARGETS_FN | fzf | cut -d' ' -f 1`
+tmux send-keys -t "$1:$2.$3" $selected

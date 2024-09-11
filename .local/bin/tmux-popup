@@ -11,6 +11,7 @@ column -t -s ',' \
 key,description
 ---,-----------
 i,cht.sh"
+c,ssh-targets"
 d,cd-ranger"
 f,file-selector"
 h,cmd --help"
@@ -47,6 +48,7 @@ read -p "Select option: " -n1 KEY
 
 case $KEY in
 	i) tmux neww -n cht.sh ~/.local/bin/tmux-help;;
+	c) tmux neww -n ssh-targets "~/.local/bin/tmux-ssh $1 $2 $3 '$4' file";;
 	d) tmux neww -n dir-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' dir";;
 	f) tmux neww -n file-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' file";;
 	h) tmux neww -n cmd\ --help "~/.local/bin/tmux-help -h";;
