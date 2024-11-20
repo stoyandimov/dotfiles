@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+HOST=$(ansible-inventory --list | jq ".| keys | .[]" | sed "s/\"//g" | fzf --header=Inventory)
+MODULE=$(ansible-doc --json --list ansible.builtin community.general | cut -d'.' -f3 | sed "s/\"//g; s/{//g; s/}//g; s/:/\t/g"  | expand --tabs=20 | fzf --header=Module | cut -d' ' -f1)
+OPTS=$(ansible-doc --json $MODULE | jq ".$MODULE.doc.options | keys | .[]" | sed "s/\"//g")
+
+ARGS=""
+
+OPT=$(echo "$OPTS" | fzf --header=Argument)
+while [ -n "$OPT" ]; do
+	CHOICES=$(ansible-doc --json $MODULE | jq ".$MODULE.doc.options.$OPT.choices")
+	if [ "$CHOICES" == "null" ]; then
+		echo "Enter value for \"$OPT\""
+		read -r VAL
+		[ -n $VAL] && break
+	else
+		VAL=$(echo "$CHOICES" | jq ".[]" | sed "s/\"//g" | fzf --header=Choices)
+	fi
+	ARGS="$ARGS $OPT=$VAL"
+	OPT=$(echo "$OPTS" | fzf --header=Argument)
+done
+
+echo "ansible $HOST -m $MODULE -a \"$ARGS\" --become -K" | vipe | sh | fzf --no-sort --reverse --header=Output | xclip -selection clipboard
+
+echo ""
+echo "[press enter to close the window...]"
+read -r NULLVAR

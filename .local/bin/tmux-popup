@@ -10,14 +10,15 @@ column -t -s ',' \
 <<EOL
 key,description
 ---,-----------
-i,cht.sh"
-c,ssh-targets"
-d,cd-ranger"
-f,file-selector"
-h,cmd --help"
-l,lynx links"
-p,1password"
-r,ranger"
+a,ansible
+c,ssh-targets
+d,cd-ranger
+f,file-selector
+h,cmd --help
+i,cht.sh
+l,lynx links
+p,1password
+r,ranger
 C-f,inline file selector (ranger)
 C-g,google search
 ---,-----------------------------
@@ -47,11 +48,12 @@ printf "\n"
 read -p "Select option: " -n1 KEY
 
 case $KEY in
-	i) tmux neww -n cht.sh ~/.local/bin/tmux-help;;
+	a) tmux neww -n ansible ~/.local/bin/tmux-ansible;;
 	c) tmux neww -n ssh-targets "~/.local/bin/tmux-ssh $1 $2 $3 '$4' file";;
 	d) tmux neww -n dir-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' dir";;
 	f) tmux neww -n file-ranger "~/.local/bin/tmux-ranger $1 $2 $3 '$4' file";;
 	h) tmux neww -n cmd\ --help "~/.local/bin/tmux-help -h";;
+	i) tmux neww -n cht.sh ~/.local/bin/tmux-help;;
 	l) tmux neww -n lynx\ links "~/.local/bin/tmux-lynx-links";;
 	p) tmux neww -n 1password ~/.local/bin/tmux-opcopy;;
 	r) tmux neww -n ranger -c '#{pane_current_path}' "TERM=tmux-256color ranger";;
