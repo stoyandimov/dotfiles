@@ -10,9 +10,9 @@ OPT=$(echo "$OPTS" | fzf --header=Argument)
 while [ -n "$OPT" ]; do
 	CHOICES=$(ansible-doc --json $MODULE | jq ".$MODULE.doc.options.$OPT.choices")
 	if [ "$CHOICES" == "null" ]; then
-		echo "Enter value for \"$OPT\""
+		echo "Enter value for argument \"$OPT\""
 		read -r VAL
-		[ -z $VAL ] && break
+		[ -z "$VAL" ] && break
 	else
 		VAL=$(echo "$CHOICES" | jq ".[]" | sed "s/\"//g" | fzf --header=Choices)
 	fi
@@ -20,4 +20,7 @@ while [ -n "$OPT" ]; do
 	OPT=$(echo "$OPTS" | fzf --header=Argument)
 done
 
-echo "ansible $HOST -m $MODULE -a \"$ARGS\" --become -K" | vipe | sh | ~/.local/bin/output-processor
+cmd="ansible $HOST -m $MODULE -a \"$ARGS\" --become -K"
+cmd=$(echo "$cmd" | sed 's/ -a " / -a "/g' | vipe)
+echo $"[executing] $cmd ..."
+echo "$cmd" | sh | ~/.local/bin/output-processor

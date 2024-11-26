@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Usage:
+# Command | ./output-processor
+
+# Check if the script is being used in a pipeline
+if [ -t 0 ]; then
+	echo "This script is meant to be used in a pipeline. Example:"
+	echo "  ls | $0"
+	exit 1
+fi
+
+# Capture the piped input
+input=$(cat)
+
+cmd="$0 $@"
+
+while [ "$input" != "" ]; do
+
+	append_cmd=1
+
+	# Display current output
+	echo "$input" | batcat
+
+	# Prompt for the next command
+	read -p "$cmd
+[c]opy, [f]zf, [i]nline, [p]review [v]ipe, []quit or [cmd -args]: " next_cmd < /dev/tty
+
+	case $next_cmd in
+		c) next_cmd="xclip -selection clipboard &> /dev/null && sleep 1";;
+		e) echo "$cmd";exit 0;;
+		f) next_cmd="fzf -m" && append_cmd=0;;
+		i) next_cmd="tmux last-window && tmux send-keys $(echo $input | sed 's/ /\ Space /g')" && append_cmd=0;;
+		p) next_cmd="batcat";;
+		v) next_cmd="vipe" && append_cmd=0;;
+	esac
+
+	# Execute the user-provided command on the input
+	input=$(echo "$input" | eval "$next_cmd")
+	if [ $append_cmd == 1 ]; then
+		cmd="$cmd | $next_cmd"
+	fi
+
+done
