@@ -14,6 +14,7 @@ bindkey -v
 
 alias ssh='TERM=xterm ssh'
 alias x=exit
+alias p=~/.local/bin/output-processor
 alias zshconfig="vim ~/.zshrc"
 alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'

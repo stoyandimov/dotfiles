@@ -12,7 +12,7 @@ while [ -n "$OPT" ]; do
 	if [ "$CHOICES" == "null" ]; then
 		echo "Enter value for \"$OPT\""
 		read -r VAL
-		[ -n $VAL] && break
+		[ -z $VAL ] && break
 	else
 		VAL=$(echo "$CHOICES" | jq ".[]" | sed "s/\"//g" | fzf --header=Choices)
 	fi
@@ -20,8 +20,4 @@ while [ -n "$OPT" ]; do
 	OPT=$(echo "$OPTS" | fzf --header=Argument)
 done
 
-echo "ansible $HOST -m $MODULE -a \"$ARGS\" --become -K" | vipe | sh | fzf --no-sort --reverse --header=Output | xclip -selection clipboard
-
-echo ""
-echo "[press enter to close the window...]"
-read -r NULLVAR
+echo "ansible $HOST -m $MODULE -a \"$ARGS\" --become -K" | vipe | sh | ~/.local/bin/output-processor
