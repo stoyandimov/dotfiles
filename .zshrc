@@ -1,6 +1,6 @@
 # ZSH
-export PATH=/home/scho/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/scho/.dotnet/tools
-export ZSH="/home/$(whoami)/.oh-my-zsh"
+export PATH=/home/$(whoami)/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/$(whoami)/.dotnet/tools
+export ZSH=/home/$(whoami)/.oh-my-zsh
 ZSH_THEME="agnoster"
 DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
@@ -19,7 +19,6 @@ alias zshconfig="vim ~/.zshrc"
 alias explorer=nautilus
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
-alias mlnet="/home/$(whoami)/.dotnet/tools/mlnet"
 alias beep="cvlc --play-and-exit -q /usr/share/sounds/freedesktop/stereo/service-logout.oga 2> /dev/null"
 alias beepup="cvlc --play-and-exit -q /usr/share/sounds/freedesktop/stereo/service-login.oga 2> /dev/null"
 alias notify="notify-phone && notify-send -i gnome-terminal 'Finished Terminal Job' && beep"
@@ -59,11 +58,12 @@ source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
 export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
 
 # 1Password (op)
-eval "$(op completion zsh)"; compdef _op op
+if which op > /dev/null; then
+	eval "$(op completion zsh)"; compdef _op op
+fi
 
 # Misc
 export EDITOR=vim
-export PATH=/home/$(whoami)/.local/bin:$PATH:/home/$(whoami)/.dotnet/tools
 export DOTNET_USE_POLLING_FILE_WATCHER=true
 
 # FUNCTIONS
@@ -120,12 +120,6 @@ headtail() {
 
 syrinxctl() {
 	pushd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice > /dev/null
-	dotnet run -- $@
-	popd > /dev/null
-}
-
-arbcli() {
-	pushd /srv/repos/sdimov/R2D2ARB/src/R2D2ARB.ArbCli > /dev/null
 	dotnet run -- $@
 	popd > /dev/null
 }
