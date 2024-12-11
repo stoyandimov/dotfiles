@@ -1,17 +1,22 @@
 # ZSH
 export PATH=/home/$(whoami)/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/$(whoami)/.dotnet/tools
 export ZSH=/home/$(whoami)/.oh-my-zsh
+bindkey -v
 ZSH_THEME="agnoster"
 DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(you-should-use git dotnet)
+plugins=(
+	zsh-fzf-history-search
+	zsh-you-should-use
+	fzf-tab
+	git
+	dotnet
+)
 
 source $ZSH/oh-my-zsh.sh
 export SYSTEMD_EDITOR=vim
 
-# Bind keys and aliases
-bindkey -v
-
+# Aliases and key bindings
 alias ssh='TERM=xterm ssh'
 alias x=exit
 alias p=~/.local/bin/output-processor
@@ -46,16 +51,11 @@ fi;
 export FZF_DEFAULT_OPTS=$FZF_DEFAULTS
 
 # FZF History search
-source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
 export ZSH_FZF_HISTORY_SEARCH_FZF_EXTRA_ARGS='--height=8 --info=hidden --layout=reverse --bind enter:replace-query+print-query'
 export ZSH_FZF_HISTORY_SEARCH_END_OF_LINE=true
 export ZSH_FZF_HISTORY_SEARCH_EVENT_NUMBERS=0
 export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
 export ZSH_FZF_HISTORY_SEARCH_REMOVE_DUPLICATES=1
-
-# FZF ZSH Autocomplete
-source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
-export FZF_COMPLETION_OPTS='' # included after FZF_DEFAULT_OPTS
 
 # 1Password (op)
 if which op > /dev/null; then
