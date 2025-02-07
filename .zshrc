@@ -119,7 +119,7 @@ headtail() {
 }
 
 syrinxctl() {
-	pushd /srv/repos/intovoice/hpbxapi/src/AdHoc/Syrinx.AdHoc.In2voice > /dev/null
+	pushd /srv/repos/intovoice/syrinxctl/src/Syrinx.AdHoc.Cli > /dev/null
 	dotnet run -- $@
 	popd > /dev/null
 }
