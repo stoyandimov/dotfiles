@@ -21,6 +21,13 @@ if [ $selected == "man" ]; then
 	exit;
 fi
 
+# Are we searching 'gh copilot' explanation
+if [ $selected == "gh" ]; then
+	query=`echo $execs $langs | tr ' ' '\n' | fzf --header "Explain using copilot:" --bind enter:replace-query+print-query`
+	tmux neww -n "gh copilot explain $query" bash -c "gh copilot explain '$query' | batcat -l man --paging always"
+	exit;
+fi
+
 # Or, search on cht.sh
 read -p "Search ($selected): " query
 
