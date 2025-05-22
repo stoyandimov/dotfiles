@@ -20,6 +20,7 @@ l,lynx links
 p,1password
 r,ranger
 s,search tmux pane
+x,copilot suggestions
 C-f,inline file selector (ranger)
 ---,-----------------------------
 
@@ -57,5 +58,6 @@ case $KEY in
 	l) tmux neww -n lynx\ links "~/.local/bin/tmux-lynx-links";;
 	p) tmux neww -n 1password ~/.local/bin/tmux-opcopy;;
 	r) tmux neww -n ranger -c '#{pane_current_path}' "TERM=tmux-256color ranger";;
-	s) tmux neww -n pane-search "tmux capture-pane -t \"$1:$2.$3\" -p -S - | ~/.local/bin/output-processor"
+	s) tmux neww -n pane-search "tmux capture-pane -t \"$1:$2.$3\" -p -S - | ~/.local/bin/output-processor";;
+	x) tmux neww -n gh\ copilot\ suggest "gh copilot suggest -t shell";;
 esac
