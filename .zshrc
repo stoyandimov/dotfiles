@@ -14,6 +14,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/.local/bin/ghc
 export SYSTEMD_EDITOR=vim
 
 # Aliases and key bindings
