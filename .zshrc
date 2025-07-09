@@ -124,3 +124,9 @@ syrinxctl() {
 	dotnet run -- $@
 	popd > /dev/null
 }
+
+schoctl() {
+	pushd /srv/repos/sdimov/scho-api/src/Apps/Scho.Apps.Cli > /dev/null
+	dotnet run -- $@
+	popd > /dev/null
+}
