@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 execs=`compgen -c`
-langs=`echo "blazor csharp php python bash" | tr ' ' '\n'`
-selected=`echo $execs $langs | tr ' ' '\n' | fzf --exact --bind enter:replace-query+print-query`
+langs=`echo "go man csharp bash blazor php python" | tr ' ' '\n'`
+selected=`echo $langs $execs | tr ' ' '\n' | fzf --exact --bind enter:replace-query+print-query`
 
 # Exit on no inpit
 if [ -z "$selected" ]; then
@@ -16,8 +16,16 @@ fi
 
 # Are we searching 'man' manual
 if [ $selected == "man" ]; then
-	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:"`
+	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:" --preview-window "80%" --preview "man '{}' | batcat"`
 	tmux neww -n "man $query" bash -c "man $query | batcat -l man --paging always"
+	exit;
+fi
+
+# Are we searching 'go doc' manual
+if [ $selected == "go" ]; then
+	pkg=`{ echo 'builtin'; go list '...'; } | fzf --header "Open go doc for:" --preview-window "80%" --preview "go doc -short '{}' | batcat -f"`
+	query=`go doc -short $pkg | fzf --layout default --header "Choose func, type, etc" --preview "echo {} | sed 's/^[[:space:]]*//' | cut -d ' ' -f 2 | cut -d '(' -f 1 | cut -d '[' -f 1 | xargs -I}{ go doc -all $pkg.'}{' | batcat -f" | cut -d' ' -f2 | cut -d'(' -f1`
+	tmux neww -n "go doc -all $pkg.$query" bash -c "go doc -all $pkg.$query | batcat -l man --paging always"
 	exit;
 fi
 

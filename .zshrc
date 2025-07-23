@@ -42,12 +42,9 @@ fi
 
 # FZF Defaults
 FZF_DEFAULTS="--inline-info --select-1 --exit-0 \
-	--bind='ctrl-e:execute(vim {})'"
-
-if [[ "$(fzf --version)" == "0.29 (devel)" ]] then
-	FZF_DEFAULTS="${FZF_DEFAULTS} --bind='ctrl-t:change-preview(tree \$(dirname \$(pwd)/{}))' \
+	--bind='ctrl-e:execute(vim {})' \
+	--bind='ctrl-t:change-preview(tree \$(dirname \$(pwd)/{}))' \
 	--bind='ctrl-v:change-preview(batcat --style=numbers --color=always --line-range :500 {})'"
-fi;
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULTS
 
