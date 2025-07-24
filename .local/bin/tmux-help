@@ -24,7 +24,7 @@ fi
 # Are we searching 'go doc' manual
 if [ $selected == "go" ]; then
 	pkg=`{ echo 'builtin'; go list '...'; } | fzf --header "Open go doc for:" --preview-window "80%" --preview "go doc -short '{}' | batcat -f"`
-	query=`go doc -short $pkg | fzf --layout default --header "Choose func, type, etc" --preview "echo {} | sed 's/^[[:space:]]*//' | cut -d ' ' -f 2 | cut -d '(' -f 1 | cut -d '[' -f 1 | xargs -I}{ go doc -all $pkg.'}{' | batcat -f" | cut -d' ' -f2 | cut -d'(' -f1`
+	query=`go doc -short $pkg | fzf --layout default --header "Choose func, type, etc" --preview "echo {} | sed 's/^[[:space:]]*//' | cut -d ' ' -f 2 | cut -d '(' -f 1 | cut -d '[' -f 1 | xargs -I}{ go doc -all $pkg.'}{' | batcat -f" | sed 's/^[[:space:]]*//' | cut -d' ' -f2 | cut -d'(' -f1`
 	tmux neww -n "go doc -all $pkg.$query" bash -c "go doc -all $pkg.$query | batcat -l man --paging always"
 	exit;
 fi
