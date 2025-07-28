@@ -1,5 +1,5 @@
 # ZSH
-export PATH=/home/$(whoami)/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/$(whoami)/.dotnet/tools
+export PATH=/home/$(whoami)/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/$(whoami)/.dotnet/tools:/usr/local/go/bin
 export ZSH=/home/$(whoami)/.oh-my-zsh
 bindkey -v
 ZSH_THEME="agnoster"
