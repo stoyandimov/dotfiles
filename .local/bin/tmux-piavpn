@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+VPN_DIR=/etc/openvpn/client
+
+selected=`ls $VPN_DIR | cut -d'.' -f 1  | fzf`
+
+sudo systemctl start openvpn-client@$selected
