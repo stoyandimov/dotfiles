@@ -2,6 +2,13 @@
 
 VPN_DIR=/etc/openvpn/client
 
-selected=`ls $VPN_DIR | cut -d'.' -f 1  | fzf`
+SELECTED=`ls $VPN_DIR | cut -d'.' -f 1  | fzf`
+SERVICE=openvpn-client@$SELECTED
+ACTION=start
 
-sudo systemctl start openvpn-client@$selected
+if [ `systemctl is-active $SERVICE` == 'active' ]; then
+	ACTION=stop
+fi
+
+echo $ACTION $SELECTED
+sudo systemctl $ACTION $SERVICE
