@@ -2,6 +2,11 @@
 
 VPN_DIR=/etc/openvpn/client
 
+if [ -z `ls $VPN_DIR` ]; then
+	read -sp "PIA VPN clients are not installed here (press Enter to exit)" nullvar
+	exit
+fi
+
 SELECTED=`ls $VPN_DIR | cut -d'.' -f 1  | fzf`
 SERVICE=openvpn-client@$SELECTED
 ACTION=start
