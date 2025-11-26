@@ -20,6 +20,7 @@ l,lynx links
 p,1password
 r,ranger
 s,search tmux pane
+t,open help history
 v,pia vpn
 x,copilot suggestions
 C-f,inline file selector (ranger)
@@ -62,4 +63,5 @@ case $KEY in
 	s) tmux neww -n pane-search "tmux capture-pane -t \"$1:$2.$3\" -p -S - | ~/.local/bin/output-processor";;
 	v) tmux neww -n pia-vpn ~/.local/bin/tmux-piavpn;;
 	x) tmux neww -n gh\ copilot\ suggest "gh copilot suggest -t shell";;
+	t) prompt=$(cut -d\" -f 2 /tmp/tmux-help.hist | fzf --tac --no-sort); eval "$(grep "$prompt" /tmp/tmux-help.hist | tail -n 1)";;
 esac

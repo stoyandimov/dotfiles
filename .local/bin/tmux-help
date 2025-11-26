@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+hist_file=/tmp/tmux-help.hist
 execs=`compgen -c`
 langs=`echo "go man csharp bash blazor php python" | tr ' ' '\n'`
 selected=`echo $langs $execs | tr ' ' '\n' | fzf --exact --bind enter:replace-query+print-query`
@@ -10,41 +11,36 @@ fi
 
 # Are we searching '--help'
 if [ "$1" == "-h" ]; then
-	tmux neww -n "$selected --help" bash -c "$selected --help | batcat -l bash --paging always"
-	exit;
-fi
+	echo "tmux neww -n \"$selected --help\" bash -c \"$selected --help | batcat -l bash --paging always\"" >> $hist_file
 
 # Are we searching 'man' manual
-if [ $selected == "man" ]; then
+elif [ $selected == "man" ]; then
 	query=`man -k . | awk '{print $1}' | fzf --header "Open manual for:" --preview-window "80%" --preview "man '{}' | batcat"`
-	tmux neww -n "man $query" bash -c "man $query | batcat -l man --paging always"
-	exit;
-fi
+	echo "tmux neww -n \"man $query\" bash -c \"man $query | batcat -l man --paging always\"" >> $hist_file
 
 # Are we searching 'go doc' manual
-if [ $selected == "go" ]; then
+elif [ $selected == "go" ]; then
 	pkg=`{ echo 'builtin'; go list '...'; } | fzf --header "Open go doc for:" --preview-window "80%" --preview "go doc -short '{}' | batcat -f"`
 	query=`go doc -short $pkg | fzf --layout default --header "Choose func, type, etc" --preview "echo {} | sed 's/^[[:space:]]*//' | cut -d ' ' -f 2 | cut -d '(' -f 1 | cut -d '[' -f 1 | xargs -I}{ go doc -all $pkg.'}{' | batcat -f" | sed 's/^[[:space:]]*//' | cut -d' ' -f2 | cut -d'(' -f1`
-	tmux neww -n "go doc -all $pkg.$query" bash -c "go doc -all $pkg.$query | batcat -l man --paging always"
-	exit;
-fi
+	echo "tmux neww -n \"go doc -all $pkg.$query\" bash -c \"go doc -all $pkg.$query | batcat -l man --paging always\"" >> $hist_file
 
 # Are we searching 'gh copilot' explanation
-if [ $selected == "gh" ]; then
+elif [ $selected == "gh" ]; then
 	query=`echo $execs $langs | tr ' ' '\n' | fzf --header "Explain using copilot:" --bind enter:replace-query+print-query`
-	tmux neww -n "gh copilot explain $query" bash -c "gh copilot explain '$query' | batcat -l man --paging always"
-	exit;
-fi
+	echo "tmux neww -n \"gh copilot explain $query\" bash -c \"gh copilot explain '$query' | batcat -l man --paging always\"" >> $hist_file
 
 # Or, search on cht.sh
-read -p "Search ($selected): " query
-
-url=""
-if echo $langs | grep -qs "$selected"; then
-	query=`echo $query | tr ' ' '+'`
-	url="cht.sh/$selected/$query"
 else
-	url="cht.sh/$selected~$query"
+	read -p "Search ($selected): " query
+	url=""
+	if echo $langs | grep -qs "$selected"; then
+		query=`echo $query | tr ' ' '+'`
+		url="cht.sh/$selected/$query"
+	else
+		url="cht.sh/$selected~$query"
+	fi
+	echo "tmux neww -n $url bash -c 'curl -q \"$url\" 2> /dev/null | batcat -pl md --paging always'" >> $hist_file
+
 fi
 
-tmux neww -n $url bash -c "curl -q $url 2> /dev/null | batcat -pl md --paging always"
+eval "$(tail -n1 /tmp/tmux-help.hist)"
