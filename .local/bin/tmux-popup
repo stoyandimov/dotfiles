@@ -24,7 +24,6 @@ t,open help history
 v,pia vpn
 x,copilot suggestions
 C-f,inline file selector (ranger)
----,-----------------------------
 
 EOL
 
@@ -41,8 +40,7 @@ ncdu,vimgolf
 p
 sshfs
 node_exporter
-------------------,---------------
-
+alarm
 
 EOL
 
