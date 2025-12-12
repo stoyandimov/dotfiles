@@ -17,6 +17,10 @@ source $ZSH/oh-my-zsh.sh
 source ~/.local/bin/ghc
 export SYSTEMD_EDITOR=vim
 
+# Dotnet
+DOTNET_ROOT=$HOME/.dotnet
+PATH=$HOME/.dotnet:$PATH
+
 # Aliases and key bindings
 alias ssh='TERM=xterm ssh'
 alias x=exit
