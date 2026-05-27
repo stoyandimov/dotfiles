@@ -1,8 +1,5 @@
 {
 	"breadcrumbs.enabled": true,
-	"chatgpt.method": "Browser Auto-login",
-	"chatgpt.chromiumPath": "/opt/microsoft/msedge/microsoft-edge",
-	"chatgpt.gpt3.model": "text-davinci-002-render",
 	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 	"editor.detectIndentation": false,
 	"editor.inlineSuggest.enabled": true,
@@ -61,5 +58,6 @@
 	},
 	"zenMode.restore": true,
 	"workbench.activityBar.location": "hidden",
-	"github.copilot.editor.enableAutoCompletions": true
+	"chat.disableAIFeatures": true,
+	"claudeCode.preferredLocation": "panel"
 }

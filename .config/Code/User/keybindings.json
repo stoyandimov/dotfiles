@@ -19,7 +19,13 @@
 		"when": "terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected"
 	},
 	{
-		"key": "ctrl+shift+c",
-		"command": "vscode-chatgpt.view.focus"
+		"key": "ctrl+alt+i",
+		"command": "-workbench.action.chat.open",
+		"when": "!chatSetupDisabledInWorkspace && !chatSetupHidden"
+	},
+	{
+		"key": "ctrl+alt+i",
+		"command": "claude-vscode.editor.openLast",
+		"when": "!config.claudeCode.useTerminal"
 	}
 ]
