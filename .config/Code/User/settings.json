@@ -59,5 +59,6 @@
 	"zenMode.restore": true,
 	"workbench.activityBar.location": "hidden",
 	"chat.disableAIFeatures": true,
-	"claudeCode.preferredLocation": "panel"
+	"claudeCode.preferredLocation": "panel",
+	"github.copilot.nextEditSuggestions.eagerness": "low"
 }
